@@ -3,27 +3,47 @@ import Node from "./node.js";
 export default class Graph {
   //Adjacency Matrix Graph
   constructor() {
-    this.graphRows = 8;
-    this.graphCols = 8;
+    this.rows = 8;
+    this.cols = 8;
 
-    this.graph = this.createGraph(this.graphRows, this.graphCols);
+    this.graph = this.createGraph(this.rows, this.cols);
+  }
+
+  setRandomNode(newVal) {
+    const randRow = Math.floor(Math.random() * this.rows);
+    const randCol = Math.floor(Math.random() * this.cols);
+
+    this.setNode(randRow, randCol, newVal);
+  }
+  setNode(row, col, newVal) {
+    this.graph[row][col].val = newVal;
   }
 
   createGraph(rows, cols) {
     const newGraph = [];
 
-    for (let i = 0; i <= rows; i++) {
-        newGraph[i] = [];
-      for (let j = 0; j <= cols; j++) {
-        const newNode = new Node(j);
+    for (let i = 0; i < rows; i++) {
+      newGraph[i] = [];
+      for (let j = 0; j < cols; j++) {
+        const newNode = new Node(i, j);
         newGraph[i][j] = newNode;
       }
     }
-    console.log(newGraph);
     return newGraph;
   }
 
-  printGraph(){
-    
+  printGraph() {
+    for (let i = 0; i < this.rows; i++) {
+      var temp = "";
+      for (let j = 0; j < this.cols; j++) {
+        const node = this.graph[i][j].val;
+        if (node == null) {
+          temp += "[ ]";
+        } else {
+          temp += `[${node}]`;
+        }
+      }
+      console.log(temp);
+    }
   }
 }

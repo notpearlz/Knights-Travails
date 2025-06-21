@@ -1,18 +1,24 @@
-export default class Node{
-    constructor(col){
-        this._col = col;
-        this._val = null;
-    }
+export default class Node {
+  constructor(row, col) {
+    this._row = row;
+    this._col = col;
 
-    get val(){
-        return this._val;
-    }
+    this._val = null;
+  }
 
-    set val(newVal){
-        this._val = newVal;
-    }
+  get val() {
+    return this._val;
+  }
 
-    get col(){
-        return [ this._col];
-    }
+  get row() {
+    return [this._row];
+  }
+
+  get col() {
+    return [this._col];
+  }
+
+  set val(newVal) {
+    this._val = newVal;
+  }
 }
