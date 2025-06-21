@@ -1,4 +1,5 @@
 import Node from "./node.js";
+import Knight from "./knight.js";
 
 export default class Graph {
   //Adjacency Matrix Graph
@@ -7,7 +8,11 @@ export default class Graph {
     this.cols = 8;
 
     this.graph = this.createGraph(this.rows, this.cols);
+    this.setRandomNode(new Knight());
+    this.printGraph();
   }
+
+  knightMoves(row, col, newRow, newCol) {}
 
   setRandomNode(newVal) {
     const randRow = Math.floor(Math.random() * this.rows);
@@ -39,8 +44,14 @@ export default class Graph {
         const node = this.graph[i][j].val;
         if (node == null) {
           temp += "[ ]";
-        } else {
-          temp += `[${node}]`;
+        } else if (typeof node == "object") {
+          if (node.name == "knight") {
+            if (node.color == "white") {
+              temp += `[♞]`;
+            } else if (node.color == "black") {
+              temp += `[♘]`;
+            }
+          }
         }
       }
       console.log(temp);
